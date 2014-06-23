@@ -5,26 +5,23 @@ import java.util.List;
 import backgammon04.model.User;
 import backgammon04.model.dao.UserDao;
 
-import com.db4o.Db4oEmbedded;
-import com.db4o.ObjectContainer;
 import com.db4o.query.Predicate;
 
-public class UserDaoImpl implements UserDao {
-
-	private ObjectContainer db;
+public class UserDaoImpl extends AbstractDb4oDao implements UserDao {
 
 	public UserDaoImpl() {
-		db = Db4oEmbedded
-				.openFile(Db4oEmbedded.newConfiguration(), "user.data");
+
 	}
 
+	@Override
 	public void delete(User user) {
-		db.delete(user);
+		getdb().delete(user);
 
 	}
 
+	@Override
 	public User get(final long id) {
-		List<User> users = db.query(new Predicate<User>() {
+		List<User> users = getdb().query(new Predicate<User>() {
 
 			private static final long serialVersionUID = 1L;
 
@@ -38,8 +35,9 @@ public class UserDaoImpl implements UserDao {
 		return null;
 	}
 
+	@Override
 	public User getByEmail(final String email) {
-		List<User> users = db.query(new Predicate<User>() {
+		List<User> users = getdb().query(new Predicate<User>() {
 
 			private static final long serialVersionUID = 1L;
 
@@ -53,8 +51,9 @@ public class UserDaoImpl implements UserDao {
 		return null;
 	}
 
+	@Override
 	public User getUser(final String username) {
-		List<User> users = db.query(new Predicate<User>() {
+		List<User> users = getdb().query(new Predicate<User>() {
 
 			private static final long serialVersionUID = 1L;
 
@@ -68,12 +67,9 @@ public class UserDaoImpl implements UserDao {
 		return null;
 	}
 
+	@Override
 	public void save(User user) {
-		db.store(user);
-	}
-
-	public void closeDb() {
-		db.close();
+		getdb().store(user);
 	}
 
 }
