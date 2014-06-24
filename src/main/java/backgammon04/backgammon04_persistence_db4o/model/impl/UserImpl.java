@@ -1,6 +1,6 @@
 package backgammon04.backgammon04_persistence_db4o.model.impl;
 
-import backgammon04.model.User;
+import backgammon04.backgammon04_persistence_interface.model.User;
 
 public class UserImpl implements User {
 

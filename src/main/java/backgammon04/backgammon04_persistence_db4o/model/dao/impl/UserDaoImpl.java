@@ -2,8 +2,8 @@ package backgammon04.backgammon04_persistence_db4o.model.dao.impl;
 
 import java.util.List;
 
-import backgammon04.model.User;
-import backgammon04.model.dao.UserDao;
+import backgammon04.backgammon04_persistence_interface.model.User;
+import backgammon04.backgammon04_persistence_interface.model.dao.UserDao;
 
 import com.db4o.query.Predicate;
 
